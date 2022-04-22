@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">click me</button>
+    <script type="module">
+      //   import { hello } from "./module/say.mjs";
+      //   import { firstName, lastName } from "./module/variable.mjs";
+      import Hewan from "./module/hewan.mjs";
+      import * as People from "./module/people.mjs";
+
+      //meng-import aggregate
+      import { firstName, lastName, hello } from "./module/aggregate.mjs";
+
+      hello(`${firstName} ${lastName}`);
+      new Hewan().makan();
+      hello(`${People.firstName} ${People.lastName}`);
+
+      document.getElementById("btn").addEventListener("click", () => {
+        //dynamic module (module didownload hanya ketika digunakan) (Promise)
+        import("./module/call.mjs").then(({ call }) => {
+          call();
+        });
+      });
+    </script>
+  </body>
+</html>
